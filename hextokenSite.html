@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  
+  <body>
+    <div class="header-container">
+      <h1>CITS</h1>
+    </div>
+    <!--<script src="script.js"></script>-->
+
+    <div class="button-container">
+      <button id="canvas-button" onclick="window.location.href = 'https://clemson.instructure.com/';">Canvas</button>
+      <button id="discord-button" onclick="window.location.href = 'https://discord.com/channels/882703499161378839/882703499962507305';">Discord</button>
+      <button id="myclemson-button" onclick="window.location.href = 'https://my.clemson.edu/';">MyClemson</button>
+      <button id="tigerflix-button" onclick="window.location.href = 'https://tigerflix.clemson.edu/Login?ReturnUrl=%2F';">Tigerflix</button>
+      <button id="gmail-button" onclick="window.location.href = 'https://accounts.google.com/ServiceLogin?service=mail';">Gmail</button>
+      <button id="clemson-button" onclick="window.location.href = 'https://www.clemson.edu/';">Clemson.edu</button>
+      <button id="graph-view-button">Change buttons</button>
+      <button id="reset-button">Reset Buttons</button>
+    </div>
+
+    <img src="QR1.png" alt="Canvas QR Code" id="qr1">
+    <img src="QR2.png" alt="Discord QR2 Code" id="qr2">
+    
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Change Button Link</h2>
+        <form id="change-link-form">
+          <label for="button-select">Select Button:</label>
+          <select id="button-select" name="button-select">
+            <option value="canvas-button">Canvas</option>
+            <option value="discord-button">Discord</option>
+            <option value="myclemson-button">MyClemson</option>
+            <option value="tigerflix-button">Tigerflix</option>
+            <option value="gmail-button">Gmail</option>
+            <option value="clemson-button">Clemson.edu</option>
+          </select>
+          <br><br>
+          <label for="button-link">New Link:</label>
+          <input type="text" id="button-link" name="button-link">
+          <br><br>
+          <label for="button-text">New Button Text:</label>
+          <input type="text" id="button-text" name="button-text">
+          <br><br>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var button = document.getElementById("graph-view-button");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks on the button, open the modal
+      button.onclick = function() {
+      modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+      modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";}
+      }
+
+      // When the form is submitted, update the button link and text
+      var form = document.getElementById("change-link-form");
+      form.addEventListener("submit", function(event) {
+          event.preventDefault();
+          var buttonSelect = document.getElementById("button-select");
+          var selectedButton = document.getElementById(buttonSelect.value);
+          var newLink = document.getElementById("button-link").value;
+          var newButtonText = document.getElementById("button-text").value;
+          selectedButton.onclick = function() {
+          window.location.href = newLink;
+          }
+          selectedButton.innerHTML = newButtonText;
+          modal.style.display = "none";
+      });
+
+      
+      form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      var buttonSelect = document.getElementById("button-select");
+      var selectedButton = document.getElementById(buttonSelect.value);
+      var newLink = document.getElementById("button-link").value;
+      var newButtonText = document.getElementById("button-text").value;
+      selectedButton.onclick = function() {
+          window.location.href = newLink;
+      }
+      selectedButton.innerHTML = newButtonText;
+      modal.style.display = "none";
+
+      // Store the updated link and button text in local storage
+      localStorage.setItem(selectedButton.id + "-link", newLink);
+      localStorage.setItem(selectedButton.id + "-text", newButtonText);
+      });
+      window.onload = function() {
+      // Retrieve the stored link and button text from local storage
+      var canvasButtonLink = localStorage.getItem("canvas-button-link");
+      var canvasButtonText = localStorage.getItem("canvas-button-text");
+      var discordButtonLink = localStorage.getItem("discord-button-link");
+      var discordButtonText = localStorage.getItem("discord-button-text");
+      var myclemsonButtonLink = localStorage.getItem("myclemson-button-link");
+      var myclemsonButtonText = localStorage.getItem("myclemson-button-text");
+      var tigerflixButtonLink = localStorage.getItem("tigerflix-button-link");
+      var tigerflixButtonText = localStorage.getItem("tigerflix-button-text");
+      var gmailButtonLink = localStorage.getItem("gmail-button-link");
+      var gmailButtonText = localStorage.getItem("gmail-button-text");
+      var clemsonButtonLink = localStorage.getItem("clemson-button-link");
+      var clemsonButtonText = localStorage.getItem("clemson-button-text");
+
+      // Update the button links and text if they exist in local storage
+      if (canvasButtonLink && canvasButtonText) {
+          var canvasButton = document.getElementById("canvas-button");
+          canvasButton.onclick = function() {
+          window.location.href = canvasButtonLink;
+          }
+          canvasButton.innerHTML = canvasButtonText;
+      }
+
+      if (discordButtonLink && discordButtonText) {
+          var discordButton = document.getElementById("discord-button");
+          discordButton.onclick = function() {
+          window.location.href = discordButtonLink;
+          }
+          discordButton.innerHTML = discordButtonText;
+      }
+
+      if (myclemsonButtonLink && myclemsonButtonText) {
+          var myclemsonButton = document.getElementById("myclemson-button");
+          myclemsonButton.onclick = function() {
+          window.location.href = myclemsonButtonLink;
+          }
+          myclemsonButton.innerHTML = myclemsonButtonText;
+      }
+
+      if (tigerflixButtonLink && tigerflixButtonText) {
+          var tigerflixButton = document.getElementById("tigerflix-button");
+          tigerflixButton.onclick = function() {
+          window.location.href = tigerflixButtonLink;
+          }
+          tigerflixButton.innerHTML = tigerflixButtonText;
+      }
+
+      if (gmailButtonLink && gmailButtonText) {
+          var gmailButton = document.getElementById("gmail-button");
+          gmailButton.onclick = function() {
+          window.location.href = gmailButtonLink;
+          }
+          gmailButton.innerHTML = gmailButtonText;
+      }
+
+      if (clemsonButtonLink && clemsonButtonText) {
+          var clemsonButton = document.getElementById("clemson-button");
+          clemsonButton.onclick = function(){
+          window.location.href = clemsonButtonLink;
+          }
+          clemsonButtonLink.innerHTML = gmailButtonLink
+      }
+      }
+
+
+      //code to reset buttons to default
+      var resetButton = document.getElementById("reset-button");
+      resetButton.addEventListener("click", function(event) { 
+      event.preventDefault();
+      // Define default values for each button
+      var defaultValues = {
+      "canvas-button": {
+      link: "https://clemson.instructure.com/",
+      text: "Canvas"
+      },
+      "discord-button": {
+      link: "https://discord.com/channels/882703499161378839/882703499962507305",
+      text: "Discord"
+      },
+      "myclemson-button": {
+      link: "https://my.clemson.edu/",
+      text: "MyClemson"
+      },
+      "tigerflix-button": {
+      link: "https://tigerflix.clemson.edu/Login?ReturnUrl=%2F",
+      text: "Tigerflix"
+      },
+      "gmail-button": {
+      link: "https://accounts.google.com/ServiceLogin?service=mail",
+      text: "Gmail"
+      },
+      "clemson-button": {
+      link: "https://www.clemson.edu/",
+      text: "Clemson.edu"
+      }
+      };
+
+      // Loop through the buttons and set their links and text to the default values
+      var buttons = document.querySelectorAll(".button-container button");
+      for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      var id = button.id;
+      var defaultLink = defaultValues[id].link;
+      var defaultText = defaultValues[id].text;
+      button.setAttribute("onclick", "window.location.href='" + defaultLink + "';");
+      button.innerHTML = defaultText;
+
+      // Save the default link and text to local storage
+      localStorage.setItem(id + "-link", defaultLink);
+      localStorage.setItem(id + "-text", defaultText);
+      }
+      });
+
+  
+    </script>
+  </body>
+</html>
+
