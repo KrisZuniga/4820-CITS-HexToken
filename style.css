@@ -105,3 +105,11 @@ body {
   background-color: rgb(255, 36, 33);
   color: white;
 }
+.qrcode-image {
+  width: 150px;
+  height: 150px;
+}
+.qrcode-image-container{
+  justify-content: center; 
+  text-align: center;
+}

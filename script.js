@@ -170,17 +170,8 @@
             var id = button.id;
             var url = localStorage.getItem(id +"-link");
             console.log(url)
-           /* if (!url || url == "") {
-                // If there is no URL, use a default QR code image
-                document.getElementById("QR" + imgCount).src = "default_qr_code_" + imgCount + ".png";
-              } 
-            else {*/
-            if (!qrcodeDiv.innerHTML.trim()) {
-                // If the qrcode div is empty, set the image src to the default QR code image
-                var qrImg = document.getElementById("QR" + imgCount);
-                qrImg.src = "default_qr_code_" + imgCount + ".png";
-              } else {
             // Generate the QR code
+            console.log(false)
             var qr = new QRCode(document.getElementById("qrcode" + imgCount), {
             text: url,
             width: 150,
@@ -193,7 +184,8 @@
             var qrcodeImg = document.getElementById("qrcode" + imgCount);
             qrcodeImg.src = document.getElementById("qrcode" + imgCount).querySelector('canvas').toDataURL(); 
             imgCount++
-        }
+            }
+        
     }
     // Call the generateQRCode function when the page loads
     window.addEventListener("load", generateQRCode);
