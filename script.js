@@ -23,7 +23,7 @@
     var buttons = document.querySelectorAll(".button-container button");
     document.getElementById("graph-view-button").addEventListener("click", function() {
     select.innerHTML = "";
-    for (var i = 0; i < buttons.length-2; i++) {
+    for (var i = 0; i < buttons.length-3; i++) {
         var option = document.createElement("option");
         option.text = buttons[i].textContent;
         option.value = buttons[i].id;

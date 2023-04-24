@@ -113,3 +113,11 @@ body {
   justify-content: center; 
   text-align: center;
 }
+.qrcode-image-container div:before {
+  content: attr(data-number);
+  font-size: 30px;
+  font-weight: bold;
+  color: #fefefe;
+  text-align: center;
+  margin-top: 5px;
+}
